@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PARKGUARD – Complete Version</title>
+
+<style>
+/* Background */
+body{
+    margin:0;font-family:Arial, sans-serif;
+    background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70') no-repeat center/cover;
+    height:100vh;color:white;
+}
+
+/* Top bar */
+.topbar{
+    background:rgba(0,0,0,0.6);padding:15px;
+    display:flex;align-items:center;
+}
+.menu-icon{font-size:28px;cursor:pointer;margin-right:10px;}
+.title{font-size:24px;font-weight:bold;}
+
+/* Sidebar */
+.sidebar{
+    width:0;height:100%;background:#111;position:fixed;
+    left:0;top:0;transition:.4s;overflow:hidden;padding-top:60px;
+}
+.sidebar a{
+    display:block;padding:15px;font-size:18px;color:white;
+    text-decoration:none;background:#222;border-bottom:1px solid #333;
+}
+.sidebar a:hover{background:#ff4500;}
+.backbtn{background:#ff0000 !important;}
+
+/* Page Container */
+.page{
+    display:none;padding:30px;background:rgba(0,0,0,0.6);
+    margin:60px auto;width:70%;border-radius:10px;
+}
+
+/* Input + Button */
+input,button{
+    width:90%;padding:10px;margin-top:10px;
+    border:none;border-radius:6px;
+}
+button{background:#ff4500;color:white;font-size:17px;cursor:pointer;}
+button:hover{background:#ff6d2e;}
+.signup-btn{background:#00bfff;}
+.signup-btn:hover{background:#45c5ff;}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="topbar">
+    <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+    <div class="title">PARKGUARD</div>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <a onclick="showPage('home')">🏠 Home</a>
+    <a onclick="showPage('nearby')">🅿 Nearby Parking</a>
+    <a onclick="showPage('rules')">📜 Rules</a>
+    <a onclick="showPage('faults')">⚠ Your Faults</a>
+    <a onclick="showPage('aibot')">🤖 AI Bot</a>
+    <a class="backbtn" onclick="toggleSidebar()">⬅ Close Menu</a>
+</div>
+
+
+<!-- PAGE 1: LOGIN PAGE -->
+<div id="home" class="page" style="display:block;">
+    <h2>Login</h2>
+    <input type="text" placeholder="Email or Phone Number">
+    <input type="number" placeholder="Enter OTP">
+    <button>Verify OTP</button>
+
+    <br><br>
+    <p>New User?</p>
+    <button class="signup-btn" onclick="showPage('signup')">Sign Up</button>
+</div>
+
+
+<!-- PAGE 2: SIGNUP PAGE -->
+<div id="signup" class="page">
+    <h2>Create New Account</h2>
+    <input type="text" placeholder="Enter Phone or Email">
+    <input type="number" placeholder="Enter OTP">
+    <button>Create Account</button>
+    <br><br>
+    <button onclick="showPage('home')">⬅ Back to Login</button>
+</div>
+
+
+<!-- PAGE 3: Nearby Parking -->
+<div id="nearby" class="page">
+    <h2>Nearby Parking Areas</h2>
+    <div>🅿 Parking Slot A – 300m</div><br>
+    <div>🅿 Parking Slot B – 1.1km</div><br>
+    <div>🅿 Parking Slot C – 2km</div>
+    <br>
+    <button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+
+<!-- PAGE 4: Rules -->
+<div id="rules" class="page">
+    <h2>Traffic Rules</h2>
+    <ul>
+        <li>Wear helmet / seatbelt</li>
+        <li>No parking in restricted areas</li>
+        <li>Obey traffic lights</li>
+        <li>Keep licence and documents</li>
+    </ul>
+    <br>
+    <button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+
+<!-- PAGE 5: Faults -->
+<div id="faults" class="page">
+    <h2>Your Fault Records</h2>
+    <p>No active violations ✔</p>
+    <br>
+    <button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+
+<!-- PAGE 6: AI Bot -->
+<div id="aibot" class="page">
+    <h2>AI Bot Chat</h2>
+    <textarea style="width:90%;height:120px;border-radius:6px;"></textarea><br><br>
+    <button>Send Message</button>
+    <br><br>
+    <button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+
+<script>
+function toggleSidebar(){
+    let bar=document.getElementById("sidebar");
+    bar.style.width = bar.style.width === "240px" ? "0" : "240px";
+}
+
+/* PAGE SWITCHER */
+function showPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.style.display="none");
+    document.getElementById(id).style.display="block";
+    document.getElementById("sidebar").style.width="0";
+}
+</script>
+
+</body>
+</html>
